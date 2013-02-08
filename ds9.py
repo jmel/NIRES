@@ -24,16 +24,22 @@ class ds9:
 		cmd = shlex.split("/usr/local/bin/xpaget %s" % self.title)
 
 		retcode = subprocess.call(cmd)
-		print retcode
 		if retcode == 1:
 			subprocess.Popen(["ds9", "-title", self.title])
 			time.sleep(5)
-			self.xpaset("width 1250")
-			self.xpaset("height 400")
-			self.xpaset("scale zscale")
-			self.xpaset("colorbar NO")
-			self.xpaset("zoom 0.58 0.58")
-			
+			if self.title == "Spectrograph":
+				self.xpaset("width 1250")
+				self.xpaset("height 400")
+				self.xpaset("scale zscale")
+				self.xpaset("colorbar NO")
+				self.xpaset("zoom 0.58 0.58")
+			if self.title == "Imager":
+				self.xpaset("width 1024")
+				self.xpaset("height 512")
+				self.xpaset("scale zscale")
+				self.xpaset("colorbar NO")
+				self.xpaset("zoom 1 1")
+				
 
 
 	def xpaget(self, cmd):
@@ -70,13 +76,58 @@ class ds9:
 		'''open opens a fits file [fname] into frame [frame]'''
 		self.frameno(frame)
 		self.xpaset("file %s" % fname)
-		self.xpaset("pan 000 190")
-		self.xpaset("orient xy")
+		if self.title=="Spectrograph":
+			self.xpaset("pan 000 190")	
+			self.xpaset("orient xy")
+		if self.title=="Imager":
+			self.xpaset("pan 000 256")	
+
 	def wavedisp(self):
 		self.xpaset("regions /Users/jmel/nires/calibrations/tspec_wavelength.reg")
+
 	def emissiondisp(self):
 		self.xpaset("regions /Users/jmel/nires/calibrations/z_emission.reg")
+
 	def zdisp(self):
 		self.xpaset("regions /Users/jmel/nires/calibrations/zregion.reg")
 
-		
+	def cuDisp(self,x,y,size=15,group="foo1",label='1',color="white"):
+		font="helvetica 16 normal"
+		s="regions command '{box %d %d %d %d # color=%s tag=%s width=2 font=\"%s\" text=\"%s\"}'" \
+			% (x,y,size,size,color,group,font,label)
+		self.xpaset(s)
+
+	def cuLabel(self,x,y,label="1",group="group1",color="white"):
+		font="helvetica 16 normal"
+		s="regions command '{text %d %d # color=%s tag=%s width=2 font=\"%s\" text=\"%s\" }'" % (x,y,color,group,font,label)
+		self.xpaset(s)
+
+	def cuDel(self,group):
+		if group=='all':
+			s="regions delete all" 
+		else:
+			s="regions group %s delete" % (group)
+		self.xpaset(s)
+
+	def cuCent(self,group):
+		s="regions group %s select" % (group)
+		self.xpaset(s)
+		s="regions centroid radius 5 iterations 5"
+		self.xpaset(s)
+		s="regions selectnone"
+		self.xpaset(s)
+
+	def cuInfo(self,group):
+		s="regions group %s select" % (group)
+		self.xpaset(s)
+		self.xpaset('regions getinfo')
+
+
+
+			    
+		#xpacmd = 'echo "box %i %i %i %i" | xpaset %s regions' % (x,y,size,size,self.title)
+		#cmd = shlex.shlex(xpacmd)
+		#cmd.quotes = '"'
+		#cmd2=list(cmd)
+		#print cmd2
+		# retcode = subprocess.call(cmd2)
