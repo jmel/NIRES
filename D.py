@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/env python
 # Take difference between two fits files
 
 import sys, pyfits as pf

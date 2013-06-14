@@ -1,8 +1,9 @@
-#!/usr/bin/python2.6
+#!/usr/bin/env python
+
+
 
 import numpy
 import os
-import pyfits
 import shlex
 import subprocess
 import time
@@ -22,7 +23,6 @@ class ds9:
 		self.title = title
 
 		cmd = shlex.split("/usr/local/bin/xpaget %s" % self.title)
-
 		retcode = subprocess.call(cmd)
 		if retcode == 1:
 			subprocess.Popen(["ds9", "-title", self.title])
@@ -33,14 +33,14 @@ class ds9:
 				self.xpaset("scale zscale")
 				self.xpaset("colorbar NO")
 				self.xpaset("zoom 0.58 0.58")
-			if self.title == "Imager":
-				self.xpaset("width 1024")
+			if self.title == "Viewer":
+				self.xpaset("width 560")
 				self.xpaset("height 512")
 				self.xpaset("scale zscale")
 				self.xpaset("colorbar NO")
-				self.xpaset("zoom 1 1")
+				self.xpaset("zoom 0.5 0.5")
+				#self.xpaset("rotate 270")
 				
-
 
 	def xpaget(self, cmd):
 		'''xpaget is a convenience function around unix xpaget'''
@@ -54,7 +54,7 @@ class ds9:
 		p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		p.stdin.write(pipein)
 		p.stdin.flush()
-		print p.communicate()
+		# print p.communicate()
 
 
 	def xpaset(self, cmd):
@@ -79,16 +79,20 @@ class ds9:
 		if self.title=="Spectrograph":
 			self.xpaset("pan 000 190")	
 			self.xpaset("orient xy")
-		if self.title=="Imager":
-			self.xpaset("pan 000 256")	
+		if self.title=="Viewer":
+			self.xpaset("pan 000 000")	
 
 	def wavedisp(self):
 		self.xpaset("regions /Users/jmel/nires/calibrations/tspec_wavelength.reg")
 
 	def emissiondisp(self):
+		self.xpaset("regions delete all")
+		self.xpaset("regions /Users/jmel/nires/calibrations/tspec_wavelength.reg")		
 		self.xpaset("regions /Users/jmel/nires/calibrations/z_emission.reg")
 
 	def zdisp(self):
+		self.xpaset("regions delete all")
+		self.xpaset("regions /Users/jmel/nires/calibrations/tspec_wavelength.reg")
 		self.xpaset("regions /Users/jmel/nires/calibrations/zregion.reg")
 
 	def cuDisp(self,x,y,size=15,group="foo1",label='1',color="white"):
@@ -122,6 +126,16 @@ class ds9:
 		self.xpaset(s)
 		self.xpaset('regions getinfo')
 
+	def regSave(self,file='ds9'):
+		self.xpaset('regions save '+file+'.reg')
+
+	def regOpen(self,file='ds9'):
+		self.xpaset('regions load '+file+'.reg')
+
+	def lindisp(self,dmin,dmax):
+		self.xpaset('scale linear')
+		s='scale limits %d %d' % (dmin,dmax)
+		self.xpaset(s)
 
 
 			    

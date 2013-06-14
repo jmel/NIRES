@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/env python
 # Take difference between two fits files
 
 import sys
@@ -22,7 +22,7 @@ unit.write('physical\n')
 
 try:
     id,pd,llist=rc.readcol("/Users/jmel/nires/calibrations/emissionLineList.dat",names=False,twod=False,fsep=",")
-    ord,xx,yy,lam=rc.readcol("/Users/jmel/nires/calibrations/tspec_wavelength_file.dat",names=False,twod=False)
+    names,(ord,xx,yy,lam)=rc.readcol("/Users/jmel/nires/calibrations/tspec_wavelength_file.dat",names=True,twod=False)
 
     z=float(z)
     lam=lam/(1.+z)
@@ -83,7 +83,7 @@ unit.close()
 
 try:
     DD=0
-    DD=ds9.ds9("Autodisplay")
+    DD=ds9.ds9("Spectrograph")
     DD.emissiondisp()
 except:
     print "could not display \n"

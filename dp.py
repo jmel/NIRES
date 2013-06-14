@@ -1,15 +1,24 @@
-#!/usr/bin/python2.6
+#!/usr/bin/env python
 # Take difference between two fits files
 
 import sys
 import ds9
+import imDisplay as imD
 
-a = sys.argv[1]
+print len(sys.argv)
+
+if len(sys.argv) == 2:
+	fname = sys.argv[1]	
+	title="Autodisplay"
+else:
+	title,prefix=imD.returnInst(sys.argv[1])
+	fname=imD.nameResolve(sys.argv[2],prefix)
 
 try:
-	fname = a
-        DD=0
-        DD=ds9.ds9("Autodisplay")
-        DD.open(fname,1)
+	DD=0
+	DD=ds9.ds9(title)
+	DD.regSave(file=title)
+	DD.open(fname,1)
+	DD.regOpen(file=title)
 except:
-	print "Could not write %s" % fname
+	print "Could not display %s" % fname
