@@ -21,7 +21,7 @@ class ds9:
 		is currently running. If not, a new ds9 instance is created with
 		that title'''
 		self.title = title
-
+		print 'yep'
 		cmd = shlex.split("/usr/local/bin/xpaget %s" % self.title)
 		retcode = subprocess.call(cmd)
 		if retcode == 1:
@@ -63,7 +63,6 @@ class ds9:
 		lg.debug(xpacmd)
 
 		cmd = shlex.split(xpacmd)
-
 		retcode = subprocess.call(cmd)
 		lg.debug("retcode = %s" % retcode) 
 
@@ -75,6 +74,7 @@ class ds9:
 	def open(self, fname, frame):
 		'''open opens a fits file [fname] into frame [frame]'''
 		self.frameno(frame)
+		print 'hm'
 		self.xpaset("file %s" % fname)
 		if self.title=="Spectrograph":
 			self.xpaset("pan 000 190")	

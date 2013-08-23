@@ -5,8 +5,6 @@ import sys
 import ds9
 import imDisplay as imD
 
-print len(sys.argv)
-
 if len(sys.argv) == 2:
 	fname = sys.argv[1]	
 	title="Autodisplay"

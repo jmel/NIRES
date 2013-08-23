@@ -19,7 +19,12 @@ def nameResolve(indexString,prefix='s*'):
 		name=prefix+num+'.fits'	
 	else:
 		name=prefix+indexString+'.fits'
-	name=glob.glob(name)[0]
+	try:
+		name=glob.glob(name)[0]
+	except: 
+		print 'Image number out of range' 
+		name=''
+
 	return name
 
 def returnInst(instString='s'):

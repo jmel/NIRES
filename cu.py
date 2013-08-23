@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/env python
 # Take difference between two fits files
 
 import sys
@@ -16,7 +16,7 @@ cuNumber = sys.argv[1]
 print cuNumber 
 
 DD=0
-DD=ds9.ds9("Imager")
+DD=ds9.ds9("Viewer")
 
 if cuNumber.lower() == 'all':
 	DD.cuDel(group="all")
