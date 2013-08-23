@@ -5,4 +5,4 @@
 # written by Jason Melbourne 2013-08-16
 #
 
-$JASON_SCRIPTS/cu.py $1 "cent"
+$JASON_SCRIPTS/cu.py $1 "del"
