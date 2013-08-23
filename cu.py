@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Take difference between two fits files
+# Control the cursors on the NIRES viewer ds9 window
 
 import sys
 import ds9
@@ -44,7 +44,7 @@ if argc==3:
 
 
 if argc ==2:
-	cuX=200+int(cuNumber)*50
+	cuX=540+int(cuNumber)*50
 	cuY=600
 if argc >= 4:	
 	cuX=sys.argv[2]
