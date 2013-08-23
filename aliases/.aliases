@@ -1,0 +1,52 @@
+alias cp cp -i
+alias ls ls -F
+alias ll ls -lF
+alias lo logout
+alias mv mv -i
+alias p clear
+alias h history
+alias rm rm -i
+alias cdserv "cd ~/kroot/kss/nires/server"
+alias cdlogs "cd ~/kroot/data/nires/logs"
+alias cdscripts "cd ~/kroot/kss/nires/scripts"
+alias cdapps "cd ~/kroot/ktl/keyword/apps"
+alias cdosiris "cd ~/kroot/kss/osiris"
+alias cdnirc2 "cd ~/kroot/kss/nirc2"
+alias cdsdsu "cd ~/kroot/kss/nires/sdsu"
+alias cdtest "cd ~/kroot/kss/nires/test"
+alias mi "modify -s nids"
+alias ms "modify -s nsds"
+alias si "show -s nids"
+alias ss "show -s nsds"
+alias m "modify -s nsds"
+alias s "show -s nsds"
+alias numfsv "modify -s nids numfs="
+alias ltm "ls -tr | more"
+alias gps "ps -ef | grep "
+alias gpsserv "ps -ef | grep rpcK | grep "
+alias term "setenv TERM xterm"
+alias tailn1 "tail -f /usr/local/var/log/nires1.log"
+alias tailn2 "tail -f /var/log/nires2.log"
+alias gr "gps rpcK"
+
+#
+# Jason's scripts for NIRES
+#
+
+setenv JASON_SCRIPTS /usr/local/home/niresdev/jmel/scripts_nires
+alias dp $JASON_SCRIPTS/dp.py
+alias dpv "dp v"
+alias dps "dp s"
+alias pdiff $JASON_SCRIPTS/pdiff.py
+alias lindisp $JASON_SCRIPTS/lindisp.py
+
+alias cu $JASON_SCRIPTS/cu.py
+alias cucent $JASON_SCRIPTS/cucent.sh
+
+alias fowlerv "modify -s nids numfs="
+alias fowlers "modify -s nsds numfs="
+alias coaddv "modify -s nids coadds="
+alias coadds "modify -s nsds coadds="
+alias objectv "modify -s nids object="
+alias objects "modify -s nsds object="
+alias object $JASON_SCRIPTS/object.sh
