@@ -42,6 +42,8 @@ alias lindisp $JASON_SCRIPTS/lindisp.py
 
 alias cu $JASON_SCRIPTS/cu.py
 alias cucent $JASON_SCRIPTS/cucent.sh
+alias cudel $JASON_SCRIPTS/cudel.sh
+alias cuslit $JASON_SCRIPTS/cuslit.sh
 
 alias fowlerv "modify -s nids numfs="
 alias fowlers "modify -s nsds numfs="
@@ -50,3 +52,6 @@ alias coadds "modify -s nsds coadds="
 alias objectv "modify -s nids object="
 alias objects "modify -s nsds object="
 alias object $JASON_SCRIPTS/object.sh
+alias xshowv "xshow -serv nids FRAMENUM OBJECT ITIME COADDS SAMPMODE NUMREADS NUMFS"
+alias xshows "xshow -serv nsds FRAMENUM OBJECT ITIME COADDS SAMPMODE NUMREADS NUMFS"
+
