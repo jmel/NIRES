@@ -7,6 +7,6 @@ import ds9
 try:
     DD=0
     DD=ds9.ds9("Spectrograph")
-	DD.wavedisp()
+    DD.wavedisp()
 except:
-	print "Could not show wavelength" 
+    print "Could not show wavelength" 

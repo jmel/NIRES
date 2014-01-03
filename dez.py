@@ -17,7 +17,7 @@ sz=wsol.shape
 
 unit.write('# Region file format: DS9 version 4.1\n')
 unit.write('# Filename: zregion.reg\n')
-unit.write('global color=orange dashlist=8 3 width=3 font="helvetica 12 bold" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1\n')
+unit.write('global color=black dashlist=8 3 width=3 font="helvetica 14 bold" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1\n')
 unit.write('physical\n')
 
 try:
@@ -46,9 +46,9 @@ try:
         for j in r2:
             if (lam[j] > llist2[i] -0.0005) and (lam[j] < llist2[i] +0.0005):
                 if jtest:
-                    s='line(%d,%d,%d,%d) # line=0 0\n' % (xx[j],yy[j]+80,xx[j],yy[j]+70)
+                    s='line(%d,%d,%d,%d) # line=0 0\n' % (xx[j],yy[j]+90,xx[j],yy[j]+80)
                     unit.write(s)
-                    s2='# text(%d,%d) text={%s}\n' % (xx[j],yy[j]+100,pd[i])
+                    s2='# text(%d,%d) text={%s}\n' % (xx[j],yy[j]+110,pd[i])
                     unit.write(s2)
                     jtest=False
             else:

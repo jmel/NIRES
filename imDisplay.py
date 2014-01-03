@@ -1,6 +1,7 @@
 import sys, pyfits as pf
 import glob
 import warnings
+import os
 
 def readImage(fn):
 	try:
@@ -10,22 +11,46 @@ def readImage(fn):
 	
 	return a
 
-def nameResolve(indexString,prefix='s*'):
-	indexStringLen=len(indexString)
-	if indexStringLen < 4:
-		num=indexString
-		for i in range(4-indexStringLen):
-			num='0'+num
-		name=prefix+num+'.fits'	
-	else:
-		name=prefix+indexString+'.fits'
-	try:
-		name=glob.glob(name)[0]
-	except: 
-		print 'Image number out of range' 
-		name=''
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
 
-	return name
+def getMostRecentFile(dir, prefix='s', suffix='.fits'):
+	files = sorted([ f for f in os.listdir(dir) if f.startswith(prefix) and f.endswith(suffix)])
+	return files[-1]
+
+def nameResolve(indexString,prefix='s*'):
+
+	# check if only want most recent file indcated by indexString='c'
+	if indexString == 'c':
+		try:
+			return getMostRecentFile('.',prefix,'fits')
+		except:
+			return ''
+	# Check for length of input string to determine if you need to construct the name
+
+	if is_number(indexString):
+		indexStringLen=len(indexString)
+	
+		if indexStringLen < 4:
+			num=indexString
+			for i in range(4-indexStringLen):
+				num='0'+num
+			name=prefix+num+'.fits'	
+		else:
+			name=prefix+indexString+'.fits'
+		try:
+			name=glob.glob(name)[0]
+		except: 
+			print 'Image number out of range' 
+			name=''
+
+		return name
+
+	return indexString
 
 def returnInst(instString='s'):
 	if instString == 'v':
