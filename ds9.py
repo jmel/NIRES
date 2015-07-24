@@ -21,11 +21,11 @@ class ds9:
 		is currently running. If not, a new ds9 instance is created with
 		that title'''
 		self.title = title
-		cmd = shlex.split("/usr/local/bin/xpaget %s" % self.title)
+		cmd = shlex.split("/usr/local/bin/xpaset -p %s scale zscale" % title)
 		retcode = subprocess.call(cmd)
 		if retcode == 1:
 			subprocess.Popen(["ds9", "-title", self.title])
-			time.sleep(5)
+			time.sleep(1)
 			if self.title == "Spectrograph":
 				self.xpaset("width 1250")
 				self.xpaset("height 400")
@@ -39,6 +39,7 @@ class ds9:
 				self.xpaset("colorbar NO")
 				self.xpaset("zoom 0.5 0.5")
 				#self.xpaset("rotate 270")
+
 				
 
 	def xpaget(self, cmd):
@@ -127,6 +128,7 @@ class ds9:
 
 	def regSave(self,file='ds9'):
 		self.xpaset('regions save '+file+'.reg')
+
 
 	def regOpen(self,file='ds9'):
 		self.xpaset('regions load '+file+'.reg')
