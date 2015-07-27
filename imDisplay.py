@@ -22,7 +22,7 @@ def getMostRecentFile(dir, prefix='s', suffix='.fits'):
 	files = sorted([ f for f in os.listdir(dir) if f.startswith(prefix) and f.endswith(suffix)])
 	return files[-1]
 
-def nameResolve(indexString,prefix='s*'):
+def nameResolve(indexString,prefix): #removed the default setting of s*
 
 	# check if only want most recent file indcated by indexString='c'
 	if indexString == 'c':
@@ -52,7 +52,7 @@ def nameResolve(indexString,prefix='s*'):
 
 	return indexString
 
-def returnInst(instString='s'):
+def returnInst(instString): #removed the default setting of s
 	if instString == 'v':
 		title='Viewer'
 		prefix='i*'	
