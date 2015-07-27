@@ -17,7 +17,7 @@ try:
 	dd = ds9.ds9(title)
 	dd.regSave(file=title)
         time.sleep(3)
-        dd.open(fname,1) #the number is used to set the frame number in the tile mode which is enabled
+        dd.open(fname,1) #the number is used to set the frame number in the tile mode which is enable
         dd.regOpen(file=title)
 except:
 	print "Could not display %s" % fname
