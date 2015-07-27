@@ -4,20 +4,20 @@
 import sys
 import ds9
 import imDisplay as imD
-import time 
-
+import time
 if len(sys.argv) == 2:
 	fname = sys.argv[1]	
-	title = "Autodisplay"
+	title="Autodisplay"
 else:
-	title, prefix = imD.returnInst(sys.argv[1])
-	fname = imD.nameResolve(sys.argv[2], prefix)
-
+	title,prefix=imD.returnInst(sys.argv[1])
+	fname=imD.nameResolve(sys.argv[2],prefix)
+        
 try:
 	dd = 0
 	dd = ds9.ds9(title)
 	dd.regSave(file=title)
-	dd.open(fname,1)
-	dd.regOpen(file=title)
+        time.sleep(3)
+        dd.open(fname,1) #the number is used to set the frame number in the tile mode which is enabled
+        dd.regOpen(file=title)
 except:
 	print "Could not display %s" % fname
