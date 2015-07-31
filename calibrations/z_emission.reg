@@ -1,0 +1,42 @@
+# Region file format: DS9 version 4.1
+# Filename: zregion.reg
+global color=black dashlist=8 3 width=3 font="helvetica 14 bold" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+physical
+line(1654,251,1654,241) # line=0 0
+# text(1654,271) text={ [O II]}
+line(1395,293,1395,283) # line=0 0
+# text(1395,313) text={ [Ne III]}
+line(965,346,965,336) # line=0 0
+# text(965,366) text={  H d}
+line(2037,428,2037,418) # line=0 0
+# text(2037,448) text={  H d}
+line(522,385,522,375) # line=0 0
+# text(522,405) text={H}
+line(1662,473,1662,463) # line=0 0
+# text(1662,493) text={H}
+line(479,389,479,379) # line=0 0
+# text(479,409) text={  [O III]}
+line(1626,476,1626,466) # line=0 0
+# text(1626,496) text={  [O III]}
+line(835,533,835,523) # line=0 0
+# text(835,553) text={ H b}
+line(678,540,678,530) # line=0 0
+# text(678,560) text={  [O III]}
+line(1982,640,1982,630) # line=0 0
+# text(1982,660) text={  [O III]}
+line(602,543,602,533) # line=0 0
+# text(602,563) text={  [O III]}
+line(1919,644,1919,634) # line=0 0
+# text(1919,664) text={  [O III]}
+line(1604,822,1604,812) # line=0 0
+# text(1604,842) text={ }
+line(1588,822,1588,812) # line=0 0
+# text(1588,842) text={  H a}
+line(1567,823,1567,813) # line=0 0
+# text(1567,843) text={ }
+line(1425,824,1425,814) # line=0 0
+# text(1425,844) text={ [S II]}
+line(1410,824,1410,814) # line=0 0
+# text(1410,844) text={ }
+line(981,826,981,816) # line=0 0
+# text(981,846) text={ [Ar III]}
