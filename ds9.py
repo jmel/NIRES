@@ -89,17 +89,17 @@ class ds9:
 	def wavedisp(self):
             # Changed path names to recognise the regions file'''
 		self.xpaset("regions delete all")
-		self.xpaset("regions /home/nivedita/jmel/scripts_nires/tspec_skylines.reg")
+		self.xpaset("regions ../NIRES/calibrations/tspec_wavelength.reg")
 
 	def emissiondisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions /home/nivedita/jmel/scripts_nires/tspec_skylines.reg")		
-		self.xpaset("regions /home/nivedita/jmel/scripts_nires/z_emission.reg")
+		self.xpaset("regions /home/nivedita/NIRES/calibrations/tspec_wavelength.reg")		
+		self.xpaset("regions /home/nivedita/NIRES/calibrations/z_emission.reg")
 
 	def zdisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions /home/nivedita/jmel/scripts_nires/tspec_skylines.reg")
-		self.xpaset("regions /home/nivedita/jmel/scripts_nires/zregion.reg")
+		self.xpaset("regions /home/nivedita/NIRES/calibrations/tspec_wavelength.reg")
+		self.xpaset("regions /home/nivedita/NIRES/calibrations/zregion.reg")
 
 	def cuDisp(self,x,y,size=15,group="foo1",label='1',color="white"):
 		font="helvetica 16 normal"
@@ -137,7 +137,6 @@ class ds9:
 
 
 	def regOpen(self,file):
-		print "file name %s" %file
 		self.xpaset('regions' +file+'.reg')
 
 	def lindisp(self,dmin,dmax):
