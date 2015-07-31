@@ -1,0 +1,1 @@
+XPASET_PATH = "/usr/local/bin/xpaset"
