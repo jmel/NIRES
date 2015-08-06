@@ -114,10 +114,14 @@ class ds9:
 
 	def cuDel(self,group):
 		if group=='all':
-			s="regions delete all" 
+                        s="regions delete all" 
 		else:
 			s="regions group %s delete" % (group)
 		self.xpaset(s)
+
+#added a wavelength delete function
+	def wavDel(self):
+		self.xpaset("regions delete all")
 
 	def cuCent(self,group):
 		s="regions group %s select" % (group)
