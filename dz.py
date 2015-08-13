@@ -10,8 +10,8 @@ import ds9
 
 z = sys.argv[1]
 print z
-unit = open('/Users/jmel/nires/calibrations/zregion.reg','w')
-wsol = pf.open('/Users/jmel/nires/calibrations/tspec_wavesol.fits')[0].data
+unit = open('../NIRES/calibrations/zregion.reg','w')
+wsol = pf.open('../NIRES/calibrations/tspec_wavesol.fits')[0].data
 sz=wsol.shape
 
 unit.write('# Region file format: DS9 version 4.1\n')
@@ -24,7 +24,7 @@ llist=llist.tolist()
 llist.extend(np.arange(40)/40.*2.+1.)
 print 'LList: ',llist,'\n'
 try:
-    names,(ord,xx,yy,lam)=rc.readcol("/Users/jmel/nires/calibrations/tspec_wavelength_file.dat",names=True,twod=False)
+    names,(ord,xx,yy,lam)=rc.readcol("../NIRES/calibrations/tspec_wavelength_file.dat",names=True,twod=False)
     print ord
     print xx
     print 'lam: ',lam

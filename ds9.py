@@ -93,13 +93,13 @@ class ds9:
 
 	def emissiondisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions /home/nivedita/NIRES/calibrations/tspec_wavelength.reg")		
-		self.xpaset("regions /home/nivedita/NIRES/calibrations/z_emission.reg")
+		self.xpaset("regions ../NIRES/calibrations/tspec_wavelength.reg")		
+		self.xpaset("regions ../NIRES/calibrations/z_emission.reg")
 
 	def zdisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions /home/nivedita/NIRES/calibrations/tspec_wavelength.reg")
-		self.xpaset("regions /home/nivedita/NIRES/calibrations/zregion.reg")
+		self.xpaset("regions ../NIRES/calibrations/tspec_wavelength.reg")
+		self.xpaset("regions ../NIRES/calibrations/zregion.reg")
 
 	def cuDisp(self,x,y,size=15,group="foo1",label='1',color="white"):
 		font="helvetica 16 normal"

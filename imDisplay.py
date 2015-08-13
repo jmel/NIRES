@@ -42,8 +42,11 @@ def nameResolve(indexString,prefix): #removed the default setting of s*
 			name=prefix+num+'.fits'	
 		else:
 			name=prefix+indexString+'.fits'
+			
+
 		try:
-			name=glob.glob(name)[0]
+			name=glob.glob('/home/nivedita/NIRES/' + name)[0] #made the path absolute
+			
 		except: 
 			print 'Image number out of range' 
 			name=''
