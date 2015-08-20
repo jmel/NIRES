@@ -2,6 +2,7 @@ import sys, pyfits as pf
 import glob
 import warnings
 import os
+import globals
 
 def readImage(fn):
 	try:
@@ -45,7 +46,7 @@ def nameResolve(indexString,prefix): #removed the default setting of s*
 			
 
 		try:
-			name=glob.glob('/home/nivedita/NIRES/' + name)[0] #made the path absolute
+                        name=glob.glob(globals.path1 + name)[0] #made the path absolute, used the path constant from globals
 			
 		except: 
 			print 'Image number out of range' 

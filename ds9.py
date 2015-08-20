@@ -6,6 +6,7 @@ import shlex
 import subprocess
 import time
 import logging as lg
+import globals
 
 class ds9:
 	title = None
@@ -19,7 +20,7 @@ class ds9:
 		is currently running. If not, a new ds9 instance is created with
 		that title'''
 		self.title = title
-		cmd = shlex.split("/usr/bin/xpaset -p %s scale zscale" % title)
+		cmd = shlex.split(globals.xpapath + "xpaset -p %s scale zscale" % title) # set the path from the globals.py
 		retcode = subprocess.call(cmd)
 		if retcode == 1:
 			subprocess.Popen(["ds9", "-title", self.title])
@@ -42,13 +43,13 @@ class ds9:
 
 	def xpaget(self, cmd):
 		'''xpaget is a convenience function around unix xpaget'''
-		cmd = shlex.split("/usr/bin/xpaget %s %s" % (self.title, cmd))
+		cmd = shlex.split(globals.xpapath +"xpaget %s %s" % (self.title, cmd))
 		retcode = subprocess.call(cmd)
 
 	def xpapipe(self, cmd, pipein):
 		''' xpapipe is a convenience wrapper around echo pipein | xpaset ...'''
 		
-		cmd = shlex.split('/usr/bin/xpaset %s %s' % (self.title, cmd))
+		cmd = shlex.split(globals.xpapath +"xpaset %s %s" % (self.title, cmd))
 		p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		p.stdin.write(pipein)
 		p.stdin.flush()
@@ -57,7 +58,8 @@ class ds9:
 
 	def xpaset(self, cmd):
 		'''xpaget is a convenience function around unix xpaset'''
-		xpacmd = "/usr/bin/xpaset -p %s %s" % (self.title, cmd)
+                
+		xpacmd = globals.xpapath +"xpaset -p %s %s" % (self.title, cmd)
 		lg.debug(xpacmd)
 
 		cmd = shlex.split(xpacmd)
@@ -89,17 +91,17 @@ class ds9:
 	def wavedisp(self):
             # Changed path names to recognise the regions file'''
 		self.xpaset("regions delete all")
-		self.xpaset("regions ../NIRES/calibrations/tspec_wavelength.reg")
+		self.xpaset("regions "+ globals.path1 + "calibrations/tspec_wavelength.reg") #set path from globals.py
 
 	def emissiondisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions ../NIRES/calibrations/tspec_wavelength.reg")		
-		self.xpaset("regions ../NIRES/calibrations/z_emission.reg")
+		self.xpaset("regions " + globals.path1 + "calibrations/tspec_wavelength.reg")		
+		self.xpaset("regions " +globals.path1 +"calibrations/z_emission.reg")
 
 	def zdisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions ../NIRES/calibrations/tspec_wavelength.reg")
-		self.xpaset("regions ../NIRES/calibrations/zregion.reg")
+		self.xpaset("regions " + globals.path1 + "calibrations/tspec_wavelength.reg")
+		self.xpaset("regions " + globals.path1 + "calibrations/zregion.reg")
 
 	def cuDisp(self,x,y,size=15,group="foo1",label='1',color="white"):
 		font="helvetica 16 normal"
