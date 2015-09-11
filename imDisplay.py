@@ -46,7 +46,7 @@ def nameResolve(indexString,prefix): #removed the default setting of s*
 			
 
 		try:
-                        name=glob.glob(globals.path1 + name)[0] #made the path absolute, used the path constant from globals
+                        name=glob.glob(globals.datapath + name)[0] #made the path absolute, used the path constant from globals
 			
 		except: 
 			print 'Image number out of range' 
