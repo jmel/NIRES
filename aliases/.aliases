@@ -3,26 +3,31 @@
 # Jason's scripts for NIRES
 #
 
-setenv JASON_SCRIPTS /usr/local/home/niresdev/jmel/scripts_nires
-alias dp $JASON_SCRIPTS/dp.py
+setenv NIRES_SCRIPTS /usr/local/home/niresdev/jmel/scripts_nires/scripts
+setenv NIRES_PYTHON /usr/local/home/niresdev/jmel/scripts_nires/nires
+
+# ds9 display scripts
+alias dp $NIRES_PYTHON/dp.py
 alias dpv "dp v"
 alias dps "dp s"
 alias dpcv "dp v c"
 alias dpcs "dp s c"
 
-alias pdiff $JASON_SCRIPTS/pdiff.py
+# pdiff scripts
+alias pdiff $NIRES_PYTHON/pdiff.py
 alias pdiffv "pdiff v"
 alias pdiffs "pdiff s"
 
-alias lindisp $JASON_SCRIPTS/lindisp.py
+# ds9 display level scripts
+alias lindisp $NIRES_PYTHON/lindisp.py
 alias lindispv "lindisp v"
 alias lindisps "lindisp s"
 
-
-alias cu $JASON_SCRIPTS/cu.py
-alias cucent $JASON_SCRIPTS/cucent.sh
-alias cudel $JASON_SCRIPTS/cudel.sh
-alias cuslit $JASON_SCRIPTS/cuslit.sh
+# ds9 cursor scrips
+alias cu $NIRES_PYTHON/cu.py
+alias cucent $NIRES_SCRIPTS/cucent.sh
+alias cudel $NIRES_SCRIPTS/cudel.sh
+alias cuslit $NIRES_SCRIPTS/cuslit.sh
 
 alias fowlerv "modify -s nids numfs="
 alias fowlers "modify -s nsds numfs="
@@ -30,7 +35,7 @@ alias coaddv "modify -s nids coadds="
 alias coadds "modify -s nsds coadds="
 alias objectv "modify -s nids object="
 alias objects "modify -s nsds object="
-alias object $JASON_SCRIPTS/object.sh
+alias object $NIRES_SCRIPTS/object.sh
 alias xshowv "xshow -serv nids FRAMENUM OBJECT ITIME COADDS SAMPMODE NUMREADS NUMFS"
 alias xshows "xshow -serv nsds FRAMENUM OBJECT ITIME COADDS SAMPMODE NUMREADS NUMFS"
 
