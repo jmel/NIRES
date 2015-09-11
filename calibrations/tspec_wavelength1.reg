@@ -1,0 +1,32 @@
+# Region file format: DS9 version 4.1
+# Filename: wavelength.reg
+global color=green dashlist=8 3 width=3 font="helvetica 14 bold" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+physical
+line(240,938,240,928) # line=0 0
+# text(240,948) text={2.40}
+line(536,938,536,928) # line=0 0
+# text(536,948) text={2.31}
+line(910,938,910,928) # line=0 0
+# text(910,948) text={2.21}
+line(1102,938,1102,928) # line=0 0
+# text(1102,948) text={2.15}
+line(1296,938,1296,928) # line=0 0
+# text(1296,948) text={2.10}
+line(1426,938,1426,928) # line=0 0
+# text(1426,948) text={2.06}
+line(1655,938,1655,928) # line=0 0
+# text(1655,948) text={2.00}
+line(57,770,57,760) # line=0 0
+# text(57,780) text={1.84}
+line(284,770,284,760) # line=0 0
+# text(284,780) text={1.79}
+line(507,770,507,760) # line=0 0
+# text(507,780) text={1.74}
+line(746,770,746,760) # line=0 0
+# text(746,780) text={1.69}
+line(945,770,945,760) # line=0 0
+# text(945,780) text={1.65}
+line(1195,770,1195,760) # line=0 0
+# text(1195,780) text={1.60}
+line(1637,770,1637,760) # line=0 0
+# text(1637,780) text={1.50}
