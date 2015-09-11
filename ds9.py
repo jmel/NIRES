@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 
 
 import numpy
@@ -8,6 +6,7 @@ import shlex
 import subprocess
 import time
 import logging as lg
+import globals
 
 class ds9:
 	title = None
@@ -21,13 +20,13 @@ class ds9:
 		is currently running. If not, a new ds9 instance is created with
 		that title'''
 		self.title = title
-		cmd = shlex.split("/usr/local/bin/xpaset -p %s scale zscale" % title)
+		cmd = shlex.split(globals.xpapath + "xpaset -p %s scale zscale" % title) # set the path from the globals.py
 		retcode = subprocess.call(cmd)
 		if retcode == 1:
 			subprocess.Popen(["ds9", "-title", self.title])
 			time.sleep(1)
 			if self.title == "Spectrograph":
-				self.xpaset("width 1250")
+				self.xpaset("width 2250")
 				self.xpaset("height 400")
 				self.xpaset("scale zscale")
 				self.xpaset("colorbar NO")
@@ -44,13 +43,13 @@ class ds9:
 
 	def xpaget(self, cmd):
 		'''xpaget is a convenience function around unix xpaget'''
-		cmd = shlex.split("/usr/local/bin/xpaget %s %s" % (self.title, cmd))
+		cmd = shlex.split(globals.xpapath +"xpaget %s %s" % (self.title, cmd))
 		retcode = subprocess.call(cmd)
 
 	def xpapipe(self, cmd, pipein):
 		''' xpapipe is a convenience wrapper around echo pipein | xpaset ...'''
 		
-		cmd = shlex.split('/usr/local/bin/xpaset %s %s' % (self.title, cmd))
+		cmd = shlex.split(globals.xpapath +"xpaset %s %s" % (self.title, cmd))
 		p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		p.stdin.write(pipein)
 		p.stdin.flush()
@@ -59,7 +58,8 @@ class ds9:
 
 	def xpaset(self, cmd):
 		'''xpaget is a convenience function around unix xpaset'''
-		xpacmd = "/usr/local/bin/xpaset -p %s %s" % (self.title, cmd)
+                
+		xpacmd = globals.xpapath +"xpaset -p %s %s" % (self.title, cmd)
 		lg.debug(xpacmd)
 
 		cmd = shlex.split(xpacmd)
@@ -73,27 +73,36 @@ class ds9:
 
 	def open(self, fname, frame):
 		'''open opens a fits file [fname] into frame [frame]'''
+		''' added commands that creates, resizes and enables options that are needed for that particular image. ds9setup not required'''
 		self.frameno(frame)
 		self.xpaset("file %s" % fname)
 		if self.title=="Spectrograph":
-			self.xpaset("pan 000 190")	
-			self.xpaset("orient xy")
+		        self.xpaset("width 1250")  
+		        self.xpaset("height 500")
+			self.xpaset("tile")
+		        self.xpaset("scale zscale")
+		        self.xpaset("colorbar NO")
+		        self.xpaset("Center Image")
+			self.xpaset("zoom to fit")	
+			self.xpaset("invert xy")
 		if self.title=="Viewer":
 			self.xpaset("pan 000 000")	
 
 	def wavedisp(self):
+            # Changed path names to recognise the regions file'''
 		self.xpaset("regions delete all")
-		self.xpaset("regions /Users/jmel/nires/calibrations/tspec_wavelength.reg")
+		self.xpaset("regions "+ globals.path1 + "calibrations/tspec_wavelength1.reg") #set path from globals.py
+                self.xpaset("regions "+ globals.path1 + "calibrations/tspec_wavelength.reg") #set path from globals.py
 
 	def emissiondisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions /Users/jmel/nires/calibrations/tspec_wavelength.reg")		
-		self.xpaset("regions /Users/jmel/nires/calibrations/z_emission.reg")
+		self.xpaset("regions " + globals.path1 + "calibrations/tspec_wavelength.reg")		
+		self.xpaset("regions " +globals.path1 +"calibrations/z_emission.reg")
 
 	def zdisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions /Users/jmel/nires/calibrations/tspec_wavelength.reg")
-		self.xpaset("regions /Users/jmel/nires/calibrations/zregion.reg")
+		self.xpaset("regions " + globals.path1 + "calibrations/tspec_wavelength.reg")
+		self.xpaset("regions " + globals.path1 + "calibrations/zregion.reg")
 
 	def cuDisp(self,x,y,size=15,group="foo1",label='1',color="white"):
 		font="helvetica 16 normal"
@@ -108,10 +117,14 @@ class ds9:
 
 	def cuDel(self,group):
 		if group=='all':
-			s="regions delete all" 
+                        s="regions delete all" 
 		else:
 			s="regions group %s delete" % (group)
 		self.xpaset(s)
+
+#added a wavelength delete function
+	def wavDel(self):
+		self.xpaset("regions delete all")
 
 	def cuCent(self,group):
 		s="regions group %s select" % (group)
@@ -126,12 +139,12 @@ class ds9:
 		self.xpaset(s)
 		self.xpaset('regions getinfo')
 
-	def regSave(self,file='ds9'):
-		self.xpaset('regions save '+file+'.reg')
+	def regSave(self,file):
+		self.xpaset('regions save' +file+'.reg')
 
 
-	def regOpen(self,file='ds9'):
-		self.xpaset('regions load '+file+'.reg')
+	def regOpen(self,file):
+		self.xpaset('regions' +file+'.reg')
 
 	def lindisp(self,dmin,dmax):
 		self.xpaset('scale linear')

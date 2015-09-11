@@ -2,6 +2,7 @@ import sys, pyfits as pf
 import glob
 import warnings
 import os
+import globals
 
 def readImage(fn):
 	try:
@@ -22,7 +23,7 @@ def getMostRecentFile(dir, prefix='s', suffix='.fits'):
 	files = sorted([ f for f in os.listdir(dir) if f.startswith(prefix) and f.endswith(suffix)])
 	return files[-1]
 
-def nameResolve(indexString,prefix='s*'):
+def nameResolve(indexString,prefix): #removed the default setting of s*
 
 	# check if only want most recent file indcated by indexString='c'
 	if indexString == 'c':
@@ -42,8 +43,11 @@ def nameResolve(indexString,prefix='s*'):
 			name=prefix+num+'.fits'	
 		else:
 			name=prefix+indexString+'.fits'
+			
+
 		try:
-			name=glob.glob(name)[0]
+                        name=glob.glob(globals.path1 + name)[0] #made the path absolute, used the path constant from globals
+			
 		except: 
 			print 'Image number out of range' 
 			name=''
@@ -52,7 +56,7 @@ def nameResolve(indexString,prefix='s*'):
 
 	return indexString
 
-def returnInst(instString='s'):
+def returnInst(instString): #removed the default setting of s
 	if instString == 'v':
 		title='Viewer'
 		prefix='i*'	
