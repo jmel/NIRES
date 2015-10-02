@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # Defining paths
 
-path1 = '/home/nivedita/NIRES/'
-
+codepath = '/home/nivedita/NIRES/nires/'
+calibrationpath = '/home/nivedita/NIRES/calibrations/'
 xpapath = '/usr/bin/'
+
+datapath = ''

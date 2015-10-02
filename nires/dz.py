@@ -11,8 +11,8 @@ import globals
 
 z = sys.argv[1]
 print z
-unit = open(globals.path1 +'calibrations/zregion.reg','w')
-wsol = pf.open(globals.path1 +'calibrations/tspec_wavesol.fits')[0].data
+unit = open(globals.codepath +'calibrations/zregion.reg','w')
+wsol = pf.open(globals.codepath +'calibrations/tspec_wavesol.fits')[0].data
 sz=wsol.shape
 
 unit.write('# Region file format: DS9 version 4.1\n')
@@ -25,7 +25,7 @@ llist=llist.tolist()
 llist.extend(np.arange(40)/40.*2.+1.)
 print 'LList: ',llist,'\n'
 try:
-    names,(ord,xx,yy,lam)=rc.readcol(globals.path1 +'NIRES/calibrations/tspec_wavelength_file.dat",names=True,twod=False)
+    names,(ord,xx,yy,lam)=rc.readcol(globals.codepath +'calibrations/tspec_wavelength_file.dat",names=True,twod=False)
     print ord
     print xx
     print 'lam: ',lam

@@ -91,18 +91,18 @@ class ds9:
 	def wavedisp(self):
             # Changed path names to recognise the regions file'''
 		self.xpaset("regions delete all")
-		self.xpaset("regions "+ globals.path1 + "calibrations/tspec_wavelength1.reg") #set path from globals.py
-                self.xpaset("regions "+ globals.path1 + "calibrations/tspec_wavelength.reg") #set path from globals.py
+		self.xpaset("regions "+ globals.calibrationpath + "tspec_wavelength1.reg") #set path from globals.py
+                self.xpaset("regions "+ globals.calibrationpath + "tspec_wavelength.reg") #set path from globals.py
 
 	def emissiondisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions " + globals.path1 + "calibrations/tspec_wavelength.reg")		
-		self.xpaset("regions " +globals.path1 +"calibrations/z_emission.reg")
+		self.xpaset("regions " + globals.codepath + "calibrations/tspec_wavelength.reg")		
+		self.xpaset("regions " +globals.codepath +"calibrations/z_emission.reg")
 
 	def zdisp(self):
 		self.xpaset("regions delete all")
-		self.xpaset("regions " + globals.path1 + "calibrations/tspec_wavelength.reg")
-		self.xpaset("regions " + globals.path1 + "calibrations/zregion.reg")
+		self.xpaset("regions " + globals.codepath + "calibrations/tspec_wavelength.reg")
+		self.xpaset("regions " + globals.codepath + "calibrations/zregion.reg")
 
 	def cuDisp(self,x,y,size=15,group="foo1",label='1',color="white"):
 		font="helvetica 16 normal"

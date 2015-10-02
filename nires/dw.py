@@ -10,7 +10,7 @@ import ds9
 import globals
 
 
-unit = open(globals.path1 +'calibrations/tspec_wavelength1.reg','w')
+unit = open(globals.calibrationpath +'tspec_wavelength1.reg','w')
 
 
 unit.write('# Region file format: DS9 version 4.1\n')
@@ -20,7 +20,7 @@ unit.write('physical\n')
 
 
 try:
-    yy,xx,lam=rc.readcol(globals.path1 +'calibrations/tspec_wavelength_file.dat',names=False,twod=False)
+    yy,xx,lam=rc.readcol(globals.calibrationpath +'tspec_wavelength_file_iraf.dat',names=False,twod=False)
     
     r1=range(0,len(lam))
     
