@@ -91,8 +91,8 @@ class ds9:
 	def wavedisp(self):
             # Changed path names to recognise the regions file'''
 		self.xpaset("regions delete all")
-		self.xpaset("regions "+ globals.codepath + "calibrations/tspec_wavelength1.reg") #set path from globals.py
-                self.xpaset("regions "+ globals.codepath + "calibrations/tspec_wavelength.reg") #set path from globals.py
+		self.xpaset("regions "+ globals.calibrationpath + "tspec_wavelength1.reg") #set path from globals.py
+                self.xpaset("regions "+ globals.calibrationpath + "tspec_wavelength.reg") #set path from globals.py
 
 	def emissiondisp(self):
 		self.xpaset("regions delete all")
