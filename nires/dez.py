@@ -7,12 +7,13 @@ import readcol as rc
 import pyfits as pf
 import string
 import ds9
+import globals
 
 
 z = sys.argv[1]
 
-unit = open('../NIRES/calibrations/z_emission.reg','w')
-wsol = pf.open('../NIRES/calibrations/tspec_wavesol.fits')[0].data
+unit = open(globals.calibrationpath + 'z_emission.reg','w')
+wsol = pf.open(globals.calibrationpath + 'tspec_wavesol.fits')[0].data
 sz=wsol.shape
 
 unit.write('# Region file format: DS9 version 4.1\n')
@@ -21,8 +22,8 @@ unit.write('global color=black dashlist=8 3 width=3 font="helvetica 14 bold" sel
 unit.write('physical\n')
 
 try:
-    id,pd,llist=rc.readcol("../NIRES/calibrations/emissionLineList.dat",names=False,twod=False,fsep=",")
-    names,(ord,xx,yy,lam)=rc.readcol("../NIRES/calibrations/tspec_wavelength_file.dat",names=True,twod=False)
+    id,pd,llist=rc.readcol(globals.calibrationpath + 'emissionLineList.dat',names=False,twod=False,fsep=",")
+    names,(ord,xx,yy,lam)=rc.readcol(globals.calibrationpath + 'tspec_wavelength_file.dat',names=True,twod=False)
 
     z=float(z)
     lam=lam/(1.+z)
