@@ -27,10 +27,10 @@ class ds9:
             time.sleep(2)
             if self.title == "Spectrograph":
                 self.xpaset("width 1250")
-                self.xpaset("height 500")
+                self.xpaset("height 700")
                 self.xpaset("scale zscale")
                 self.xpaset("colorbar NO")
-                self.xpaset("zoom 0.5 0.5")
+                self.xpaset("zoom 0.58 0.58")
             if self.title == "Viewer":
                 self.xpaset("width 560")
                 self.xpaset("height 512")
