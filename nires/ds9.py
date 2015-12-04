@@ -24,10 +24,10 @@ class ds9:
         retcode = subprocess.call(cmd)
         if retcode == 1:
             subprocess.Popen(["ds9", "-title", self.title])
-            time.sleep(1)
+            time.sleep(2)
             if self.title == "Spectrograph":
-                self.xpaset("width 2250")
-                self.xpaset("height 400")
+                self.xpaset("width 1250")
+                self.xpaset("height 500")
                 self.xpaset("scale zscale")
                 self.xpaset("colorbar NO")
                 self.xpaset("zoom 0.5 0.5")
@@ -37,8 +37,8 @@ class ds9:
                 self.xpaset("scale zscale")
                 self.xpaset("colorbar NO")
                 self.xpaset("zoom 0.5 0.5")
-            time.sleep(1)
-                
+            time.sleep(2)
+               
 
     def xpaget(self, cmd):
         '''xpaget is a convenience function around unix xpaget'''
@@ -75,21 +75,12 @@ class ds9:
         ''' added commands that creates, resizes and enables options that are needed for that particular image. ds9setup not required'''
         self.frameno(frame)
         self.xpaset("file %s" % fname)
-        if self.title=="Spectrograph":
-                self.xpaset("width 1250")  
-                self.xpaset("height 500")
-            self.xpaset("tile")
-                self.xpaset("scale zscale")
-                self.xpaset("colorbar NO")
-                self.xpaset("Center Image")    
-        if self.title=="Viewer":
-            self.xpaset("pan 000 000")    
 
     def wavedisp(self):
-            # Changed path names to recognise the regions file'''
+        # Changed path names to recognise the regions file'''
         self.xpaset("regions delete all")
         self.xpaset("regions "+ globals.calibrationpath + "tspec_wavelength1.reg") #set path from globals.py
-                self.xpaset("regions "+ globals.calibrationpath + "tspec_wavelength.reg") #set path from globals.py
+        self.xpaset("regions "+ globals.calibrationpath + "tspec_wavelength.reg") #set path from globals.py
 
     def emissiondisp(self):
         self.xpaset("regions delete all")
