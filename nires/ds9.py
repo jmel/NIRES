@@ -36,9 +36,7 @@ class ds9:
                 self.xpaset("height 512")
                 self.xpaset("scale zscale")
                 self.xpaset("colorbar NO")
-                self.xpaset("zoom 0.5 0.5")
-            time.sleep(2)
-               
+                self.xpaset("zoom 0.5 0.5")               
 
     def xpaget(self, cmd):
         '''xpaget is a convenience function around unix xpaget'''
