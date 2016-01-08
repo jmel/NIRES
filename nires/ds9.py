@@ -24,7 +24,7 @@ class ds9:
         retcode = subprocess.call(cmd)
         if retcode == 1:
             subprocess.Popen(["ds9", "-title", self.title])
-            time.sleep(2)
+            time.sleep(5)
             if self.title == "Spectrograph":
                 self.xpaset("width 1250")
                 self.xpaset("height 700")
@@ -123,14 +123,13 @@ class ds9:
     def cuInfo(self,group):
         s="regions group %s select" % (group)
         self.xpaset(s)
-        self.xpaset('regions getinfo')
+        self.xpaset("regions getinfo")
 
     def regSave(self,file):
-        self.xpaset('regions save' +file+'.reg')
-
+        self.xpaset("regions save " + file + ".reg")
 
     def regOpen(self,file):
-        self.xpaset('regions' +file+'.reg')
+        self.xpaset("regions " + file + ".reg")
 
     def lindisp(self,dmin,dmax):
         self.xpaset('scale linear')
