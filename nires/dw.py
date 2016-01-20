@@ -10,7 +10,7 @@ import ds9
 import globals
 
 
-unit = open(globals.calibrationpath +'tspec_wavelength1.reg','w')
+unit = open('wavelength.reg','w')
 
 
 unit.write('# Region file format: DS9 version 4.1\n')
