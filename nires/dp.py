@@ -5,12 +5,13 @@ import sys
 import ds9
 import imDisplay as imD
 import time
-if len(sys.argv) == 2:
-    fname = sys.argv[1]      
-    title="Autodisplay"
-else:
+
+if len(sys.argv) == 3:
     title,prefix=imD.returnInst(sys.argv[1])
     fname=imD.nameResolve(sys.argv[2],prefix)
+else :
+    print 'Did not specify required arguments, Here are some examples: "dps 50" or "dp s 50", "dpv 50" or "dp v 50"  '
+    exit();
         
 try:
     dd = 0
