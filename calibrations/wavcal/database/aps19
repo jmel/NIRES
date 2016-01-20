@@ -1,0 +1,210 @@
+# Fri 15:17:07 02-Oct-2015
+begin	aperture s19 7 15. 870.0951
+	image	s19
+	aperture	7
+	beam	7
+	center	15. 870.0951
+	low	-14. -5.
+	high	2033. 5.
+	background
+		xmin -12.77463
+		xmax 10.
+		function chebyshev
+		order 1
+		sample -10:-6,6:10 -12.77463:-3.539097 3.471745:6.639353
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	8
+		2.
+		4.
+		5.
+		2045.
+		2.156106
+		0.04872594
+		-1.874316
+		-0.4459454
+
+# Fri 15:17:07 02-Oct-2015
+begin	aperture s19 6 15. 880.526
+	image	s19
+	aperture	6
+	beam	6
+	center	15. 880.526
+	low	-14. -5.
+	high	2033. 5.
+	background
+		xmin -23.8981
+		xmax 10.
+		function chebyshev
+		order 1
+		sample -10:-6,6:10 -23.8981:-14.66257 3.067636:5.561733 -6.23525:-4.010553
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	8
+		2.
+		4.
+		5.
+		2045.
+		1.577454
+		0.1477643
+		-1.838237
+		-0.4216514
+
+# Fri 15:17:07 02-Oct-2015
+begin	aperture s19 5 15. 890.3625
+	image	s19
+	aperture	5
+	beam	5
+	center	15. 890.3625
+	low	-14. -5.
+	high	2033. 5.
+	background
+		xmin -16.4158
+		xmax 24.70841
+		function chebyshev
+		order 1
+		sample -10:-6,6:10 -16.4158:-14.12376 -6.639357:-3.875851 3.26969:6.167896 13.17873:15.87699 22.82048:24.70841
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	8
+		2.
+		4.
+		5.
+		2045.
+		1.597449
+		0.2332796
+		-1.874899
+		-0.4437219
+
+# Fri 15:17:07 02-Oct-2015
+begin	aperture s19 4 15. 899.5663
+	image	s19
+	aperture	4
+	beam	4
+	center	15. 899.5663
+	low	-14. -5.
+	high	2033. 5.
+	background
+		xmin -16.21375
+		xmax 24.64106
+		function chebyshev
+		order 1
+		sample -10:-6,6:10 -16.21375:-13.17874 -5.831142:-3.000288 4.347307:6.369947 13.38289:16.1464 22.68577:24.64106
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	8
+		2.
+		4.
+		5.
+		2045.
+		2.256655
+		0.335645
+		-1.837545
+		-0.4109655
+
+# Fri 15:17:07 02-Oct-2015
+begin	aperture s19 3 15. 909.3837
+	image	s19
+	aperture	3
+	beam	3
+	center	15. 909.3837
+	low	-14. -5.
+	high	2033. 5.
+	background
+		xmin -24.70842
+		xmax 24.84312
+		function chebyshev
+		order 1
+		sample -10:-6,6:10 22.75313:24.84312 -24.70842:-23.08988 -15.94434:-12.70728 12.57257:15.67493 3.067636:6.50465 -5.629087:-3.606447
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	8
+		2.
+		4.
+		5.
+		2045.
+		2.20284
+		0.3994881
+		-1.883513
+		-0.4433793
+
+# Fri 15:17:07 02-Oct-2015
+begin	aperture s19 2 15. 919.8337
+	image	s19
+	aperture	2
+	beam	2
+	center	15. 919.8337
+	low	-14. -5.
+	high	2033. 5.
+	background
+		xmin -10.
+		xmax 23.69604
+		function chebyshev
+		order 1
+		sample -10:-6,6:10 2.122616:5.090277 -6.708811:-4.551468 -7.24762:-4.145256 12.10112:23.69604
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	8
+		2.
+		4.
+		5.
+		2045.
+		1.512581
+		0.5028609
+		-1.851594
+		-0.4165305
+
+# Fri 15:17:07 02-Oct-2015
+begin	aperture s19 1 15. 929.0375
+	image	s19
+	aperture	1
+	beam	1
+	center	15. 929.0375
+	low	-14. -5.
+	high	2033. 5.
+	background
+		xmin -10.
+		xmax 18.43844
+		function chebyshev
+		order 1
+		sample -10:-6,6:10 3.000284:18.43844 -7.045568:-4.347311
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	8
+		2.
+		4.
+		5.
+		2045.
+		2.03283
+		0.5991205
+		-1.866203
+		-0.4235044
+
