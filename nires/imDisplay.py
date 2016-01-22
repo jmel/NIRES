@@ -20,7 +20,13 @@ def is_number(s):
         return False
 
 def getMostRecentFile(dir, prefix='s', suffix='.fits'):
-    files = sorted([ f for f in os.listdir(dir) if f.startswith(prefix) and f.endswith(suffix)])
+    
+    files = sorted([ f for f in os.listdir(dir) if f.startswith(prefix[0]) and f.endswith(suffix)])
+    
+    # handle old version of filename
+    if len(files) == 0 and prefix[0] == 'v':
+        files = sorted([ f for f in os.listdir(dir) if f.startswith('i') and f.endswith(suffix)])
+
     return files[-1]
 
 def nameResolve(indexString, prefix): #removed the default setting of s*
