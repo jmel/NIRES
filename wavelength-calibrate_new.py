@@ -50,38 +50,48 @@ for k in range(len(wavj)-1):
 coeffj = np.dot(np.linalg.pinv(coj),wavj); # the model
 
 fits_o = open('k-order1.txt','w');
-lambda1 = np.zeros((558 ,2048))
+lambda1 = np.zeros((1024 ,2048))
 count  = 0
 # used to predict some value from the training set
-for m in range(466 , 1024):
+for m in range(1 , 1024):
     if m >816 and m<1024:
        for n in range(2047):
            num = 0
            for l in  range(3):
                for g in  range(3):
               
-                   lambda1[m-466][n] = lambda1[m-466][n] + coeff[num]*(n+1)**(l-1)*m**(g-1)
+                   lambda1[m][n] = lambda1[m][n] + coeff[num]*(n+1)**(l-1)*m**(g-1)
                    num = num + 1
-           lambda1[m-466][n] = lambda1[m-466][n]*order_data[m][n]    
+           lambda1[m][n] = lambda1[m][n]*order_data[m][n]    
     else:
 	 if m < 816 and m > 649:
             for n in range(2047):
                 num = 0
                 for l in  range(3):
                     for g in  range(3):
-                        lambda1[m-466][n] = lambda1[m-466][n] + coeffh[num]*(n+1)**(l-1)*m**(g-1)
+                        lambda1[m][n] = lambda1[m][n] + coeffh[num]*(n+1)**(l-1)*m**(g-1)
                         num = num + 1
-                lambda1[m-466][n] = lambda1[m-466][n]*order_data[m][n] 
+                lambda1[m][n] = lambda1[m][n]*order_data[m][n] 
         
          else:
-              for n in range(2047):
-                  num = 0
-                  for l in  range(3):
-                      for g in  range(3):
+              if m> 479 and m<649:
+                 for n in range(2047):
+                     num = 0
+                     for l in  range(3):
+                         for g in  range(3):
               
-                          lambda1[m-466][n] = lambda1[m-466][n] + coeffj[num]*(n+1)**(l-1)*m**(g-1)
-                          num = num + 1
-                  lambda1[m-466][n] = lambda1[m-466][n]*order_data[m][n] 
+                             lambda1[m][n] = lambda1[m][n] + coeffj[num]*(n+1)**(l-1)*m**(g-1)
+                             num = num + 1
+                     lambda1[m][n] = lambda1[m][n]*order_data[m][n] 
+              else:
+                   for n in range(2047):
+                       num = 0
+                       for l in  range(3):
+                           for g in  range(3):
+              
+                               lambda1[m][n] = 1
+                               num = num + 1
+                       lambda1[m][n] = lambda1[m][n]*order_data[m][n] 
 
        # count = count + 1
        # fits_o.write('%f.\r\n' %(lambda1[count]))  
@@ -89,4 +99,4 @@ for m in range(466 , 1024):
 
 hdu = fits.PrimaryHDU(lambda1)
 hdulist = fits.HDUList([hdu])
-hdulist.writeto('khj-order.fits')
+hdulist.writeto('nires-wavelength.fits')
