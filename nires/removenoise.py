@@ -9,12 +9,10 @@ import numpy as np
 from astropy.io import fits
 #title = ''
 
-#title,prefix=imD.returnInst(sys.argv[1])
-name=imD.nameResolve(sys.argv[2],'s*')
+#print sys.argv[2]
+#name=imD.nameResolve(sys.argv[2],'s*')
 
-
-
-noise_image = fits.open(name)
+noise_image = fits.open('s151112_a000017.fits')
 
 noise_data = noise_image[0].data
 total = np.zeros(2048)

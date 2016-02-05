@@ -9,11 +9,12 @@ from astropy.io import fits
 x,y,wav = rc.readcol('wavelength.txt',skipline=1,twod=False)
 xh,yh,wavh = rc.readcol('wavelength-h.txt',skipline=1,twod=False)
 xj,yj,wavj = rc.readcol('wavelength-j.txt',skipline=1,twod=False)
+xj1,yj1,wavj1 = rc.readcol('wavelength-j1.txt',skipline=1,twod=False)
 
-order_image = fits.open('nires_orders.fits')
+order_image = fits.open('order-bright1.fits')
 order_data = order_image[0].data
 
-print order_data[810][1]
+#print order_data[810][1]
 co = np.zeros((len(wav),16))
 for k in range(len(wav)-1):
     c = 0
@@ -48,6 +49,19 @@ for k in range(len(wavj)-1):
             c = c+1
 
 coeffj = np.dot(np.linalg.pinv(coj),wavj); # the model
+
+coj1 = np.zeros((len(wavj1),16))
+
+for k in range(len(wavj1)-1):
+    c = 0
+    for i in range(3):
+        for j in range(3):
+        
+            coj1[k][c] = xj1[k]**(i-1) * yj1[k]**(j-1)
+            c = c+1
+
+coeffj1 = np.dot(np.linalg.pinv(coj1),wavj1); # the model
+
 
 fits_o = open('k-order1.txt','w');
 lambda1 = np.zeros((1024 ,2048))
@@ -84,14 +98,24 @@ for m in range(1 , 1024):
                              num = num + 1
                      lambda1[m][n] = lambda1[m][n]*order_data[m][n] 
               else:
-                   for n in range(2047):
-                       num = 0
-                       for l in  range(3):
-                           for g in  range(3):
+                   if m > 280 and m< 479:  
+                      for n in range(2047):
+                          num = 0
+                          for l in  range(3):
+                              for g in  range(3):
               
-                               lambda1[m][n] = 1
-                               num = num + 1
-                       lambda1[m][n] = lambda1[m][n]*order_data[m][n] 
+                                  lambda1[m][n] = lambda1[m][n] + coeffj1[num]*(n+1)**(l-1)*m**(g-1)
+                                  num = num + 1
+                          lambda1[m][n] = lambda1[m][n]*order_data[m][n] 
+                   else:
+                       for n in range(2047):
+                           num = 0
+                           for l in  range(3):
+                               for g in  range(3):
+              
+                                   lambda1[m][n] = 1
+                                   num = num + 1
+                           lambda1[m][n] = lambda1[m][n]*order_data[m][n] 
 
        # count = count + 1
        # fits_o.write('%f.\r\n' %(lambda1[count]))  
