@@ -49,9 +49,11 @@ def nameResolve(indexString, prefix): #removed the default setting of s*
             name = prefix + num + '.fits'    
         else:
             name = prefix + indexString + '.fits'
-            
+          
         try:
+           
             full_name = glob.glob(globals.datapath + name)[0] #made the path absolute, used the path constant from globals
+            
         except: 
         	# handle old version of the images 
             if name[0] == 'v':
@@ -64,7 +66,7 @@ def nameResolve(indexString, prefix): #removed the default setting of s*
             else:
                 print 'Image number out of range' 
                 full_name = ''
-
+        
         return full_name
 
     return indexString

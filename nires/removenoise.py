@@ -5,32 +5,34 @@ import sys
 import ds9
 import imDisplay as imD
 import numpy as np
-#from matplotlib import pyplot as plt
 from astropy.io import fits
-#title = ''
 
-#title,prefix=imD.returnInst(sys.argv[1])
+##image dimensions
+row = 1024
+col = 2048
+
+### No.of lines to be average over
+n = 16
+
+
 name=imD.nameResolve(sys.argv[2],'s*')
-
-
-
 noise_image = fits.open(name)
 
 noise_data = noise_image[0].data
-total = np.zeros(2048)
-average = np.zeros(2048)
-clear_data = np.zeros((1024,2048))
-average1 = np.zeros(2048)
-total1 = np.zeros(2048)
+total = np.zeros(col)
+average = np.zeros(col)
+clear_data = np.zeros((row,col))
+average1 = np.zeros(col)
+total1 = np.zeros(col)
 
-for i in range(2048):
-    for j in range(16):
+for i in range(col):
+    for j in range(n):
         total[i] = total[i] + noise_data[j][i]
-        average[i]  = total[i]/16
-        total1[i] = total1[i] + noise_data[1023 - j][i]
-        average1[i] = total1[i]/16
-    for k in range(1024): 
-        if (k<512): 
+        average[i]  = total[i]/n
+        total1[i] = total1[i] + noise_data[(row-1) - j][i]
+        average1[i] = total1[i]/n
+    for k in range(row): 
+        if (k<row/2): 
                   clear_data[k][i] = noise_data[k][i] - average[i]
    
         else:

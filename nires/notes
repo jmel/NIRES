@@ -1,0 +1,9 @@
+///// April 4th 2016///
+
+NIRES - Jason codes
+
+-- cleaned order-extraction.py
+-- The input images are now called using 'glob'
+-- added globals.py
+-- created data folder. It now contains input and output images. Code modified accordingly
+
