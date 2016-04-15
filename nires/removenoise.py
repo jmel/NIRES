@@ -6,6 +6,7 @@ import ds9
 import imDisplay as imD
 import numpy as np
 from astropy.io import fits
+import globals
 
 ##image dimensions
 row = 1024
@@ -15,7 +16,7 @@ col = 2048
 n = 16
 
 
-name=imD.nameResolve(sys.argv[2],'s*')
+name=imD.nameResolve(sys.argv[1],'s*')
 noise_image = fits.open(name)
 
 noise_data = noise_image[0].data
@@ -40,4 +41,5 @@ for i in range(col):
 
 hdu = fits.PrimaryHDU(clear_data)
 hdulist = fits.HDUList([hdu])
-hdulist.writeto('clear-data.fits')
+name = name[:-5]
+hdulist.writeto(name+'clear-data.fits')
