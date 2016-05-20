@@ -19,6 +19,7 @@ n = 16
 name=imD.nameResolve(sys.argv[1],'s*')
 noise_image = fits.open(name)
 
+
 noise_data = noise_image[0].data
 total = np.zeros(col)
 average = np.zeros(col)
