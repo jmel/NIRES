@@ -6,7 +6,7 @@ import numpy as np
 from astropy.io import fits
 import matplotlib.pyplot as plt
 
-### paths ###
+### paths ### (changes based on system)
 path = '/media/nivedita/New Volume/nires_data/tiptilt/'
 opath = './data/'
 
@@ -14,37 +14,59 @@ row = 1024
 col = 1024
 
 ### range of images to be considered
-n1 = 74
-n2 = 114
+n1 = 73
+n2 = 109
 
 n3 = 21
 n4 = 61
+l_i = ((n2-n1) + (n4-n3))
+print l_i/4
 
 con = 'v160512_00'
 con1 = 'v160512_0'
 con2 = 'v160512_000'
 
 ### area of slit 
-a_r = 550 - 380 +1
-a_c = 162-95+1
+r1 = 380
+r2 = 550
+c1 = 95
+c2 = 162
 
-print range(n1,n2,4)
+a_r = r2 - r1 +1
+a_c = c2 - c1+1
+
+print range(n2,n1,-4)
+print range(n3,n4,4)
+
 j =0
-data = np.zeros((11,row,col))
+data = np.zeros((19,row,col))
 
-for i in range(n1,n2,4):
-    if i > 99:
-       image = fits.open(path+con1 +str(i) +'.fits')
-    else:
+for i in range(n2,n1,-4):
+    if i < 10:
+       image = fits.open(path+con2 +str(i) +'.fits')
+    elif i <100:
        image = fits.open(path+con +str(i) +'.fits')
+    else:
+       image = fits.open(path+con1 +str(i) +'.fits')
     data[j][:][:] = image[0].data
     j = j+1
 
-yaxis = np.zeros((j+1,a_r,a_c))
-xaxis = np.zeros((j+1,a_r,a_c))
+for i in range(n3,n4,4):
+    if i < 10:
+       image = fits.open(path+con2 +str(i) +'.fits')
+    elif i <100:
+       image = fits.open(path+con +str(i) +'.fits')
+    else:
+       image = fits.open(path+con1 +str(i) +'.fits')
+    data[j][:][:] = image[0].data
+    j = j+1
 
-x_p = np.zeros(11)
-y_p = np.zeros(11)
+
+yaxis = np.zeros((j,a_r,a_c))
+xaxis = np.zeros((j,a_r,a_c))
+
+x_p = np.zeros(j)
+y_p = np.zeros(j)
 
 y=0
 for k in range(j):
@@ -53,11 +75,11 @@ for k in range(j):
     count = 0
     tempx = 0
     countx = 0
-    for r in range(380,550):
+    for r in range(r1,r2):
         x = x+1
         y = 0
         if r < 500:
-           for c in range(95,162):
+           for c in range(c1,c2):
                y = y +1
                if data[k][r][c] > -300 :   
                   yaxis[k][x][y] = c 
@@ -69,18 +91,19 @@ for k in range(j):
     y_p[k] =temp/count
     x_p[k] =tempx/countx 
       
-np.savetxt('img0_y.txt', yaxis[0][:][:], delimiter= ",",fmt = '%d')
-np.savetxt('img0_x.txt', xaxis[0][:][:], delimiter= ",",fmt = '%d') 
- 
-#print y_p , x_p   
-theta = [0,5,10,15,20,25,30,35,40,45]
-plt.plot(theta,y_p[:-1])
+    np.savetxt('img'+str(k)+'_y.txt', yaxis[k][:][:], delimiter= ",",fmt = '%d')
+    np.savetxt('img0'+str(k)+' _x.txt', xaxis[k][:][:], delimiter= ",",fmt = '%d') 
+
+
+
+theta = [-45,-40,-35,-30,-25,-20,-15,-10,-5,0,5,10,15,20,25,30,35,40,45]
+plt.plot(theta,y_p)
 plt.ylim([124,125])
 plt.xlabel('Theta (deg)')
 plt.ylabel('col pix')
 plt.savefig(opath+'x_theta1'+'.png', format = 'png')
 plt.figure(2)
-plt.plot(theta,x_p[:-1])
+plt.plot(theta,x_p)
 plt.xlabel('Theta (deg)')
 plt.ylabel('row pix')
 plt.savefig(opath+'y_theta1'+'.png', format = 'png')
